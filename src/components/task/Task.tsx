@@ -13,6 +13,7 @@ import {
   Badge,
 } from '@patternfly/react-core';
 import {OkIcon, DownloadIcon} from '@patternfly/react-icons';
+import { MockData } from '../task-container/TaskContainer';
 export interface TaskPropObject {
   id: number
   name: string;
@@ -23,7 +24,7 @@ export interface TaskPropObject {
 }
 
 export interface TaskProp {
-  task: TaskPropObject
+  task: MockData
 }
 const Task: React.FC<TaskProp> = (props) => {
   return (
@@ -31,18 +32,22 @@ const Task: React.FC<TaskProp> = (props) => {
       <Flex breakpointMods={[{modifier: 'column', breakpoint: 'lg'}, {modifier: 'row', breakpoint: 'lg'}]}>
         <Flex breakpointMods={[{modifier: 'flex-1', breakpoint: 'lg'}]}>
           <div className="task-data">
-            <FlexItem><Link to={`/detail/${props.task.id}`}><span className="task-heading">{props.task.name}</span></Link></FlexItem>
-            <FlexItem>{props.task.description.split('.')[0]}</FlexItem>
+            <FlexItem><Link to={`/detail/${props.task.Name}`}><span className="task-heading">{props.task.Name}</span></Link></FlexItem>
+            {/* <FlexItem>{props.task.description.split('.')[0]}</FlexItem> */}
+            <FlexItem>sadajdajsdba</FlexItem>
             <FlexItem>
               <React.Fragment>
-                {
+                {/* {
                   props.task.tags.map((tag) =>
                     <span key={tag}>
                       <Badge>{tag}</Badge>
                       {' '}
                     </span>,
                   )
-                }
+                } */}
+                <Badge>Go</Badge>
+                <Badge>Task</Badge>
+                <Badge>Build</Badge>
               </React.Fragment>
             </FlexItem>
           </div>

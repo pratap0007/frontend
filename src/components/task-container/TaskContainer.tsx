@@ -1,25 +1,46 @@
 import React from 'react';
 // eslint-disable-next-line no-unused-vars
 import {TaskPropObject} from '../task/Task';
+import {connect} from 'react-redux'
 import Task from '../task/Task';
 import {mockData} from '../../services/mockdata';
-const TaskContainer: React.FC = (props) => {
+import {ResData} from "../../store"
+export interface MockData{
+  Name : string,
+  Description : string,
+  Rating : number,
+  Downloads : number,
+  YAML : string
+}
+const TaskContainer: React.FC = (props: any) => {
+  // console.log("Ayo")
+  // console.log(props.users)
+  const data = props.users
+   console.log(data)
   return (
     <div>
+     {/* <h1>{props.user}</h1> */}
+
       {
-        mockData.map((task: any) => {
-          const taskData: TaskPropObject = {
-            id: task['id'],
-            name: task['Name'],
-            tags: task['Tags'],
-            description: task['Description'],
-            downloads: 0,
-            rating: 0,
+        data.map((task: ResData) => {
+          let taskData:MockData  = {
+            Name: task.Name,
+            Description: task.Description,
+            Rating: task.Rating,
+            Downloads: task.Downloads,
+            YAML:task.YAML
           };
-          return <Task key={task['id']} task={taskData} />;
+          return <Task key={task.Name} task={taskData} />;
         })}
     </div>
   );
 };
+const mapStateToProps = (state:any) => {
+  console.log("dsdsdas");
+  return {
+    users: state.data
+  }
+}
 
-export default TaskContainer;
+ export default connect (mapStateToProps)(TaskContainer);
+;
